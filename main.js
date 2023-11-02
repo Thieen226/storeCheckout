@@ -69,6 +69,7 @@ function addItem(){
     //create variables that hold the barcode of the item and its quantity
     const itemBarcode = document.getElementById("itemBarcode").value;
     const itemQuantity = document.getElementById("quantity").value;
+    const total = document.getElementById("total");
 
     //if the barcode of the item is inside of item objects then it will be added to the cart
     if(item.hasOwnProperty(itemBarcode)){
@@ -86,10 +87,19 @@ function addItem(){
         pItem.innerText = item[itemBarcode].name;
         pPrice.innerText = item[itemBarcode].price;
         pQuantity.innerText = itemQuantity;
+
+        //add class name to the elements
+        container.classList.add("container");
+        pItem.classList.add("pItem");
+        pPrice.classList.add("pPrice");
+        pQuantity.classList.add("pQuantity");
     }
     //if the input is empty, alert this
     else if(itemBarcode === ""){
         alert("You have to add something");
+    }
+    else if(itemQuantity === ""){
+        alert("Add the number of item you want");
     }
     //if the barcode of the item is not in the item object, alert this
     else{
@@ -99,5 +109,8 @@ function addItem(){
     //reset the input of itemBarcode and quantity
     document.getElementById("itemBarcode").value = "";
     document.getElementById("quantity").value = "";
+
+    //change the total according to the amount of items and their prices
+    
 }
 addBtn.addEventListener("click", addItem);
