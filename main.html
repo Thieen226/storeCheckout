@@ -12,10 +12,10 @@
     <section>
         <h1>Cashier Checkout</h1>
         <p>
-            Scan Product Barcode: <input id="barcodeScan" type="text" placeholder="Scan barcode here">
+            Scan Product Barcode: <input id="itemBarcode" type="text" placeholder="Scan barcode here">
         </p>
         <p>
-            Quantity: <input type="number">
+            Quantity: <input id="quantity" type="number" min="1">
         </p>
         <button id="addBtn">Add to Cart</button>
         <h3>Cart</h3>
@@ -26,7 +26,18 @@
             <p>Quantity</p>
         </div>
 
-        <div id="barcodeItem"></div>
+        <div id="itemContainer"></div>
+
+        <div class="checkoutSection">
+            <p>
+                Total: $0.00
+            </p>
+            <button id="checkoutBtn">Checkout</button>
+            <p>
+                Your total (including tax, 9.25%) is $0.00
+            </p>
+        </div>
+
     </section>
 </body>
 </html>
