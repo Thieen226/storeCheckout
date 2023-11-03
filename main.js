@@ -67,14 +67,14 @@ let total = document.getElementById("total");
 function addItem(){
     //create variables that hold the barcode of the item and its quantity
     const itemBarcode = document.getElementById("itemBarcode").value;
-    const itemQuantity = document.getElementById("itemQuantity");
+    const itemQuantity = document.getElementById("itemQuantity").value;
 
     //if the barcode of item is empty, alert this
     if(itemBarcode === ""){
         alert("You have to add something");
     }
-    //if t
-    else if(itemQuantity.value === ""){
+    //if the quantity input is empty, alert this
+    else if(itemQuantity === ""){
         alert("You have to add numbers of item you want");
     }
     //if the barcode of the item is inside of item objects then it will be added to the cart
