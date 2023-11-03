@@ -5,8 +5,8 @@ section{
     background-color: #ffffff;
     border: 1px solid #dfdfdf;
     box-shadow: 1em 1em 1em #dfdfdf;
-    width: 40%;
-    height: 50em; 
+    width: 50%;
+    height: 60em; 
     margin: 5em auto;
     padding: 1em;
     overflow-y: scroll;
@@ -52,11 +52,7 @@ input{
 .container{
     border: 1px solid black;
     display: flex;
-    justify-content: space-evenly;
-    margin: 0 0 1em ;
+    justify-content: space-around;
+    margin: 0 0 1em;
     border-radius: 0.5em;
-}
-.pPrice,
-.pQuantity{
-    margin: auto 2.3em;
 }

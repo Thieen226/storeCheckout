@@ -1,40 +1,39 @@
 const item ={
     "689145740844" : {
         name: "JavaScript Textbook",
-        price: "34.95"
+        price: 34.95
     },
     "4549292070248" : {
         name: "Xerox Paper",
-        price: "10.99"
+        price: 10.99
     },
     "092265222983":{
         name: "First Aid Kit",
-        price: "20.99"
+        price: 20.99
     },
-
     "X002ELVL3J":{
         name: "Box of Pencils (50ct.)",
-        price: "15.99"
+        price: 15.99
     },
     "686024002468":{
         name: "Sanitizing Wipes",
-        price: "10.99"
+        price: 10.99
     },
     "860004186236":{
         name: "N95 Face Masks",
-        price: "15.99"
+        price: 15.99
     },
     "036000214000":{
         name: "Kleenex",
-        price: "3.99"
+        price: 3.99
     },
     "8809693254156":{
         name: "Hand Sanitizer",
-        price: "7.99"
+        price: 7.99
     },
     "036500060480":{
         name: "Printer Paper",
-        price: "9.99"
+        price: 9.99
     },
     "085014561877":{
         name: "Brush Pens",
@@ -45,12 +44,10 @@ const item ={
         name: "Multiport Adapter",
         price: 25.99
     },
-
     "B07G6JT1XS":{
         name: "Scissors (20ct.)",
         price: 23.99
     },
-
     "9780134682334":{
         name: "iOS Programming Textbook",
         price: 119.99
@@ -64,15 +61,24 @@ const item ={
 //create variables for both the Add to Cart button and the itemContainer
 const addBtn = document.getElementById("addBtn");
 const itemContainer = document.getElementById("itemContainer");
+let totalValue = 0;
+let total = document.getElementById("total");
 
 function addItem(){
     //create variables that hold the barcode of the item and its quantity
     const itemBarcode = document.getElementById("itemBarcode").value;
-    const itemQuantity = document.getElementById("quantity").value;
-    const total = document.getElementById("total");
+    const itemQuantity = document.getElementById("itemQuantity");
 
+    //if the barcode of item is empty, alert this
+    if(itemBarcode === ""){
+        alert("You have to add something");
+    }
+    //if t
+    else if(itemQuantity.value === ""){
+        alert("You have to add numbers of item you want");
+    }
     //if the barcode of the item is inside of item objects then it will be added to the cart
-    if(item.hasOwnProperty(itemBarcode)){
+    else if(item.hasOwnProperty(itemBarcode)){
         const container = document.createElement("div");
         const pItem = document.createElement("p");
         const pPrice = document.createElement("p");
@@ -93,13 +99,10 @@ function addItem(){
         pItem.classList.add("pItem");
         pPrice.classList.add("pPrice");
         pQuantity.classList.add("pQuantity");
-    }
-    //if the input is empty, alert this
-    else if(itemBarcode === ""){
-        alert("You have to add something");
-    }
-    else if(itemQuantity === ""){
-        alert("Add the number of item you want");
+
+        //change the total according to the amount of items and their prices
+        totalValue += parseFloat(itemQuantity * item[itemBarcode].price);
+        total.innerText= "Total: $" + totalValue.toFixed(2);
     }
     //if the barcode of the item is not in the item object, alert this
     else{
@@ -110,7 +113,6 @@ function addItem(){
     document.getElementById("itemBarcode").value = "";
     document.getElementById("quantity").value = "";
 
-    //change the total according to the amount of items and their prices
-    
+
 }
 addBtn.addEventListener("click", addItem);
