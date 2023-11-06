@@ -20,7 +20,7 @@ h3{
 .itemInfo{
     display: flex;
     justify-content: space-around;
-    padding: 0 0 0 1.5em;
+    margin: 0 0 0 2em;
     text-decoration: underline;
     font-weight: 600;
 }
@@ -52,7 +52,13 @@ input{
 .container{
     border: 1px solid black;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     margin: 0 0 1em;
     border-radius: 0.5em;
+}
+.pItem,
+.pPrice,
+.pQuantity{
+    width: 30%;
+    text-align: center;
 }
