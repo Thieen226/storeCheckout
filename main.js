@@ -65,6 +65,9 @@ let total = document.getElementById("total");
 let totalValue = 0;
 let checkoutBtn = document.getElementById("checkoutBtn");
 
+//create object to check if the item already exist
+let existItem = {};
+
 function addItem(){
     //create variables that hold the barcode of the item and its quantity
     const itemBarcode = document.getElementById("itemBarcode").value;
@@ -75,12 +78,14 @@ function addItem(){
         alert("You have to add something");
     }
     //if the quantity input is empty, alert this
-    else if(itemQuantity === ""){
+    if(itemQuantity === ""){
         alert("You have to add numbers of item you want");
     }
-    //if the barcode of the item is inside of item objects then it will be added to the cart section
-    else if(item.hasOwnProperty(itemBarcode)){
+    if(existItem.hasOwnProperty(item)){
 
+    }
+    //if the barcode of the item is inside of item objects then it will be added to the cart section
+    if(item.hasOwnProperty(itemBarcode)){
         //creating elements to store the iten information
         const container = document.createElement("div");
         const pItem = document.createElement("p");
@@ -109,7 +114,8 @@ function addItem(){
         total.innerText= "Total: $" + totalValue.toFixed(2);
 
         //change the total grand (adding tax to the total)
-        grandTotal.innerText = " Your grand total (including tax, 9.25%) is $ " + (totalValue + totalValue*0.0925).toFixed(2); 
+        grandTotal.innerText = " Your grand total (including tax, 9.25%) is $ " + (totalValue + totalValue*0.0925).toFixed(2);
+        
     }
     //if the barcode of the item is not in the item object, alert this
     else{
@@ -118,7 +124,7 @@ function addItem(){
 
     //reset the input of itemBarcode and quantity
     document.getElementById("itemBarcode").value = "";
-    document.getElementById("quantity").value = "";
+    document.getElementById("itemQuantity").value = "";
 }
 
 //after clicking the Add to Cart button, the item you scanned will appear below the cart section
