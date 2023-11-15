@@ -82,19 +82,31 @@ function addItem(){
         alert("You have to add numbers of item you want");
     }
 
-    //itemIn
+    //create a variable to store the item
     let itemInCart = checkIfInCart(itemBarcode);
 
     //checking if the item is in the cart
     if(itemInCart){
-        let currentCount =  itemInCart.querySelector(".pQuantity");
-        currentCount.innerText = parseInt(currentCount.innerText) + parseInt(itemQuantity);
-        return;
+        let newQuantity =  itemInCart.querySelector(".pQuantity");
+        
+        //adding the quantity of the new and the previous quantity when the name of the item is the same
+        newQuantity.innerText = parseInt(newQuantity.innerText) + parseInt(itemQuantity);
+
+        //change the total according to the amount of items and their prices
+        totalValue += parseFloat(itemQuantity * item[itemBarcode].price);
+        total.innerText= "Total: $" + totalValue.toFixed(2);
+    
+        //change the total grand (adding tax to the total)
+        grandTotal.innerText = "Your grand total (including tax, 9.25%) is $ " + (totalValue + totalValue*0.0925).toFixed(2);
+
+        //reset the input of itemBarcode and quantity
+        document.getElementById("itemBarcode").value = "";
+        document.getElementById("itemQuantity").value = "";
     }
     //if the barcode of the item is inside of item objects then it will be added to the cart section
     if(item.hasOwnProperty(itemBarcode)){
         console.log(existItem);
-        //checking if the item is already exist, if it is then update the quantity
+        //checking if the item is already exist, if it is run the function
         if(existItem.hasOwnProperty(itemBarcode)){
             checkIfInCart();
         }
@@ -125,7 +137,6 @@ function addItem(){
 
         //updating the quantity and apply it to the total 
         existItem[itemBarcode] = itemQuantity;
-        console.log(existItem);
         
         //change the total according to the amount of items and their prices
         totalValue += parseFloat(itemQuantity * item[itemBarcode].price);
@@ -145,7 +156,7 @@ function addItem(){
 }
 
 //create function to check if the item existed in the cart
-function checkIfInCart(barcodeNumber){
+function checkIfInCart(itemBarcode){
     let itemsInCart = document.querySelectorAll(".container");
 
     //use for loop to grab all the items in the cart 
@@ -153,13 +164,10 @@ function checkIfInCart(barcodeNumber){
         let itemName = itemsInCart[i].querySelector(".pItem").innerText;
 
         //compare the item's name with the barcode item's name
-        if(item[barcodeNumber].name === itemName){
+        if(item[itemBarcode].name === itemName){
             return itemsInCart[i];
         }
     }
-
-
-    // console.log(itemsInCart);
 }
 
 //after clicking the Add to Cart button, the item you scanned will appear below the cart section
