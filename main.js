@@ -111,7 +111,7 @@ function addItem(){
 
     //reset the input of itemBarcode and quantity
     document.getElementById("itemBarcode").value = "";
-    document.getElementById("quantity").value = "";
+    document.getElementById("itemQuantity").value = "";
 
 
 }
