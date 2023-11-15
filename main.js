@@ -115,7 +115,6 @@ function addItem(){
 
         //updating the quantity and apply it to the total 
         existItem[itemBarcode] = itemQuantity;
-
         
         //change the total according to the amount of items and their prices
         totalValue += parseFloat(itemQuantity * item[itemBarcode].price);
