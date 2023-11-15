@@ -81,12 +81,22 @@ function addItem(){
     if(itemQuantity === ""){
         alert("You have to add numbers of item you want");
     }
+
+    //itemIn
+    let itemInCart = checkIfInCart(itemBarcode);
+
+    //checking if the item is in the cart
+    if(itemInCart){
+        let currentCount =  itemInCart.querySelector(".pQuantity");
+        currentCount.innerText = parseInt(currentCount.innerText) + parseInt(itemQuantity);
+        return;
+    }
     //if the barcode of the item is inside of item objects then it will be added to the cart section
     if(item.hasOwnProperty(itemBarcode)){
-        
+        console.log(existItem);
         //checking if the item is already exist, if it is then update the quantity
         if(existItem.hasOwnProperty(itemBarcode)){
-
+            checkIfInCart();
         }
         else{
         //creating elements to store the item information
@@ -115,6 +125,7 @@ function addItem(){
 
         //updating the quantity and apply it to the total 
         existItem[itemBarcode] = itemQuantity;
+        console.log(existItem);
         
         //change the total according to the amount of items and their prices
         totalValue += parseFloat(itemQuantity * item[itemBarcode].price);
@@ -130,6 +141,25 @@ function addItem(){
     //reset the input of itemBarcode and quantity
     document.getElementById("itemBarcode").value = "";
     document.getElementById("itemQuantity").value = "";
+  
+}
+
+//create function to check if the item existed in the cart
+function checkIfInCart(barcodeNumber){
+    let itemsInCart = document.querySelectorAll(".container");
+
+    //use for loop to grab all the items in the cart 
+    for(let i = 0; i < itemsInCart.length; i++){
+        let itemName = itemsInCart[i].querySelector(".pItem").innerText;
+
+        //compare the item's name with the barcode item's name
+        if(item[barcodeNumber].name === itemName){
+            return itemsInCart[i];
+        }
+    }
+
+
+    // console.log(itemsInCart);
 }
 
 //after clicking the Add to Cart button, the item you scanned will appear below the cart section
