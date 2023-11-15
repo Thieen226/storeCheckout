@@ -63,7 +63,6 @@ let addBtn = document.getElementById("addBtn");
 let itemContainer = document.getElementById("itemContainer");
 let total = document.getElementById("total");
 let totalValue = 0;
-let newValue = 0;
 let checkoutBtn = document.getElementById("checkoutBtn");
 
 //create object to check if the item already exist
@@ -90,7 +89,7 @@ function addItem(){
             
         }
         else{
-        //creating elements to store the iten information
+        //creating elements to store the item information
         const container = document.createElement("div");
         const pItem = document.createElement("p");
         const pPrice = document.createElement("p");
@@ -114,7 +113,7 @@ function addItem(){
         pQuantity.classList.add("pQuantity");
         }
 
-        //setting the new quantity into the old one
+        //updating the quantity and apply it to the total 
         existItem[itemBarcode] = itemQuantity;
 
         //change the total according to the amount of items and their prices
@@ -131,7 +130,7 @@ function addItem(){
 
     //reset the input of itemBarcode and quantity
     document.getElementById("itemBarcode").value = "";
-    document.getElementById("quantity").value = "";
+    document.getElementById("itemQuantity").value = "";
 
 
 }
