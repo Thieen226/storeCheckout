@@ -145,14 +145,9 @@ function addItem(){
         //change the total grand (adding tax to the total)
         grandTotal.innerText = "Your grand total (including tax, 9.25%) is $ " + (totalValue + totalValue*0.0925).toFixed(2);
     }
-    //if the barcode of the item is not in the item object, alert this
-    else{
-        alert("Item is not available");
-    }
     //reset the input of itemBarcode and quantity
     document.getElementById("itemBarcode").value = "";
     document.getElementById("itemQuantity").value = "";
-  
 }
 
 //create function to check if the item existed in the cart
