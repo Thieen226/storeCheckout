@@ -95,9 +95,6 @@ function addItem(){
         //change the total according to the amount of items and their prices
         totalValue += parseFloat(itemQuantity * item[itemBarcode].price);
         total.innerText= "Total: $" + totalValue.toFixed(2);
-    
-        //change the total grand (adding tax to the total)
-        grandTotal.innerText = "Your grand total (including tax, 9.25%) is $ " + (totalValue + totalValue*0.0925).toFixed(2);
 
         //reset the input of itemBarcode and quantity
         document.getElementById("itemBarcode").value = "";
@@ -141,9 +138,6 @@ function addItem(){
         //change the total according to the amount of items and their prices
         totalValue += parseFloat(itemQuantity * item[itemBarcode].price);
         total.innerText= "Total: $" + totalValue.toFixed(2);
-    
-        //change the total grand (adding tax to the total)
-        grandTotal.innerText = "Your grand total (including tax, 9.25%) is $ " + (totalValue + totalValue*0.0925).toFixed(2);
     }
     //reset the input of itemBarcode and quantity
     document.getElementById("itemBarcode").value = "";
@@ -165,7 +159,15 @@ function checkIfInCart(itemBarcode){
     }
 }
 
+function checkOut(){
+     //change the total grand (adding tax to the total)
+     grandTotal.innerText = "Your grand total (including tax, 9.25%) is $ " + (totalValue + totalValue*0.0925).toFixed(2);
+
+}
 //after clicking the Add to Cart button, the item you scanned will appear below the cart section
 addBtn.addEventListener("click", addItem);
+
+checkoutBtn.addEventListener("click", checkOut);
+
 
 
